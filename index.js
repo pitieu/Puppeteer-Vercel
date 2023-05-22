@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const chrome = require("chrome-aws-lambda");
 const puppeteer = require("puppeteer-core");
 
+app.use(cors());
 dotenv.config();
 
 app.get("/api", async (req, res) => {
