@@ -4,13 +4,7 @@ const dotenv = require("dotenv");
 const chrome = require("chrome-aws-lambda");
 const puppeteer = require("puppeteer-core");
 
-app.use(
-  cors({
-    origin: "*", // allow to server to accept request from different origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // allow session cookie from browser to pass through
-  })
-);
+app.use(cors());
 
 dotenv.config();
 
@@ -39,17 +33,6 @@ app.get("/api", async (req, res) => {
 
   const base64Image = screenshot.toString("base64");
 
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  // replace "*" with your origin in production
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-  );
   res.json({ image: base64Image });
 });
 
