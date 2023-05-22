@@ -9,9 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "^14"
-  },
   "dependencies": {
     "chrome-aws-lambda": "^6",
     "cors": "^2.8.5",
