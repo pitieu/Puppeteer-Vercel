@@ -27,7 +27,7 @@ app.get("/api", async (req, res) => {
     defaultViewport: chrome.defaultViewport,
     executablePath: await chrome.executablePath(
       // "https://puppeteer-pitieu.s3.ap-southeast-1.amazonaws.com/chromium/chromium.br"
-      "https://puppeteer-pitieu.s3.ap-southeast-1.amazonaws.com/chromium/bin.zip"
+      "https://puppeteer-pitieu.s3.ap-southeast-1.amazonaws.com/chromium/bin.tar"
     ),
     headless: chrome.headless,
     ignoreHTTPSErrors: true,
