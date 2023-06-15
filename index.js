@@ -2,7 +2,7 @@ const app = require("express")();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const puppeteer = require("puppeteer-core");
-const chromium = require("@sparticuz/chromium");
+const chrome = require("@sparticuz/chromium");
 
 app.use(cors());
 
@@ -25,7 +25,9 @@ app.get("/api", async (req, res) => {
   const browser = await puppeteer.launch({
     args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chrome.defaultViewport,
-    executablePath: await chrome.executablePath,
+    executablePath: await chrome.executablePath(
+      "https://puppeteer-pitieu.s3.ap-southeast-1.amazonaws.com/chromium/chromium.br"
+    ),
     headless: "new",
     ignoreHTTPSErrors: true,
   });
