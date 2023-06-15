@@ -2,14 +2,14 @@ const app = require("express")();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const puppeteer = require("puppeteer-core");
-const chrome = require("@sparticuz/chromium-min");
+const chrome = require("chrome-aws-lambda");
 
 app.use(cors());
 
 dotenv.config();
 
 app.get("/", async (req, res) => {
-  res.send("call /api?url=URL_HERE");
+  res.send("call /api?url=URL_HERE&secret=SECRET_HERE");
 });
 
 app.get("/api", async (req, res) => {
@@ -25,10 +25,7 @@ app.get("/api", async (req, res) => {
   const browser = await puppeteer.launch({
     args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chrome.defaultViewport,
-    executablePath: await chrome.executablePath(
-      // "https://puppeteer-pitieu.s3.ap-southeast-1.amazonaws.com/chromium/chromium.br"
-      "https://puppeteer-pitieu.s3.ap-southeast-1.amazonaws.com/chromium/chromium-v114.0.0-pack.tar"
-    ),
+    executablePath: await chrome.executablePath(),
     headless: chrome.headless,
     ignoreHTTPSErrors: true,
   });
