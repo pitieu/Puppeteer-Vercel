@@ -2,7 +2,7 @@ const app = require("express")();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const puppeteer = require("puppeteer-core");
-const chrome = require("@sparticuz/chromium");
+const chrome = require("@sparticuz/chromium-min");
 
 app.use(cors());
 
