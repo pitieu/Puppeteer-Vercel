@@ -1,16 +1,12 @@
 const app = require("express")();
 const cors = require("cors");
 const dotenv = require("dotenv");
-const puppeteer = require("puppeteer-core");
 const chrome = require("chrome-aws-lambda");
+const puppeteer = require("puppeteer-core");
 
 app.use(cors());
 
 dotenv.config();
-
-app.get("/", async (req, res) => {
-  res.send("call /api?url=URL_HERE&secret=SECRET_HERE");
-});
 
 app.get("/api", async (req, res) => {
   const url = req.query.url;
@@ -26,7 +22,7 @@ app.get("/api", async (req, res) => {
     args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chrome.defaultViewport,
     executablePath: await chrome.executablePath,
-    headless: chrome.headless,
+    headless: "new",
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
@@ -40,7 +36,7 @@ app.get("/api", async (req, res) => {
   res.json({ image: base64Image });
 });
 
-app.listen(process.env.PORT || 3005, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server started");
 });
 
