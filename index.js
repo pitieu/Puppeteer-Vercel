@@ -1,12 +1,16 @@
 const app = require("express")();
 const cors = require("cors");
 const dotenv = require("dotenv");
-const chrome = require("chrome-aws-lambda");
 const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
 
 app.use(cors());
 
 dotenv.config();
+
+app.get("/", async (req, res) => {
+  res.send("call /api?url=URL_HERE");
+});
 
 app.get("/api", async (req, res) => {
   const url = req.query.url;
@@ -36,7 +40,7 @@ app.get("/api", async (req, res) => {
   res.json({ image: base64Image });
 });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3005, () => {
   console.log("Server started");
 });
 
