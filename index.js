@@ -25,7 +25,7 @@ app.get("/api", async (req, res) => {
   const browser = await puppeteer.launch({
     args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chrome.defaultViewport,
-    executablePath: await chrome.executablePath(),
+    executablePath: await chrome.executablePath,
     headless: chrome.headless,
     ignoreHTTPSErrors: true,
   });
