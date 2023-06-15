@@ -28,7 +28,7 @@ app.get("/api", async (req, res) => {
     executablePath: await chrome.executablePath(
       "https://puppeteer-pitieu.s3.ap-southeast-1.amazonaws.com/chromium/chromium.br"
     ),
-    headless: "new",
+    headless: chrome.headless,
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
