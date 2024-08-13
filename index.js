@@ -76,7 +76,7 @@ app.get("/api/video", async (req, res) => {
   });
 
   // Wait for scrolling to complete
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(2000);
 
   // Stop recording and get video
   const video = await page.video().stop();
