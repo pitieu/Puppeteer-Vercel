@@ -28,7 +28,10 @@ app.get("/api", async (req, res) => {
   await page.goto(url);
 
   // Take a screenshot and store it as a buffer
-  const screenshot = await page.screenshot({ encoding: "base64" });
+  const screenshot = await page.screenshot({
+    encoding: "base64",
+    fullPage: true,
+  });
 
   await browser.close();
 
