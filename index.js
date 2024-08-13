@@ -16,8 +16,8 @@ app.get("/api", async (req, res) => {
     return res.status(400).send("Bad Request: Please provide a URL.");
   }
 
-  if (process.env.SECRET !== req.query.secret)
-    throw new Error("Invalid secret");
+  // if (process.env.SECRET !== req.query.secret)
+  //   throw new Error("Invalid secret");
 
   const browser = await puppeteer.launch({
     args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
