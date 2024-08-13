@@ -2,7 +2,7 @@ const app = require("express")();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const chrome = require("@sparticuz/chromium");
-// const puppeteer = require("puppeteer-core");
+const puppeteer = require("puppeteer-core");
 
 app.use(cors());
 
@@ -18,7 +18,7 @@ app.get("/api", async (req, res) => {
   // if (process.env.SECRET !== req.query.secret)
   //   throw new Error("Invalid secret");
 
-  const browser = await chrome.puppeteer.launch({
+  const browser = await puppeteer.launch({
     args: chrome.args,
     defaultViewport: chrome.defaultViewport,
     executablePath: await chrome.executablePath,
