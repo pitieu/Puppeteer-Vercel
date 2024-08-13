@@ -19,11 +19,20 @@ app.get("/api", async (req, res) => {
   // if (process.env.SECRET !== req.query.secret)
   //   throw new Error("Invalid secret");
 
+  // const browser = await puppeteer.launch({
+  //   args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+  //   defaultViewport: chrome.defaultViewport,
+  //   executablePath: await chrome.executablePath,
+  //   headless: chrome.headless,
+  //   ignoreHTTPSErrors: true,
+  // });
   const browser = await puppeteer.launch({
     args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chrome.defaultViewport,
-    executablePath: await chrome.executablePath,
-    headless: chrome.headless,
+    executablePath: process.env.VERCEL
+      ? "/var/task/node_modules/chromium-binary/bin/chromium"
+      : await chrome.executablePath,
+    headless: "new",
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
