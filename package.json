@@ -16,6 +16,6 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "playwright-core": "^1.46.0",
-    "puppeteer-core": "^6.0.0"
+    "puppeteer-core": "^23.0.2"
   }
 }
