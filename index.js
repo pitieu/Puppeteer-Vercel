@@ -1,11 +1,12 @@
 const app = require("express")();
 const cors = require("cors");
 const dotenv = require("dotenv");
-const chrome = require("chrome-aws-lambda");
+const chrome = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
 
 app.use(cors());
-
+chrome.setHeadlessMode = true;
+chrome.setGraphicsMode = false;
 dotenv.config();
 
 app.get("/api", async (req, res) => {
@@ -22,7 +23,7 @@ app.get("/api", async (req, res) => {
     args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chrome.defaultViewport,
     executablePath: await chrome.executablePath,
-    headless: "new",
+    headless: chrome.headless,
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
