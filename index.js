@@ -33,7 +33,8 @@ app.get("/api", async (req, res) => {
   await browser.close();
 
   // Send the screenshot as a base64-encoded string
-  res.json({ image: screenshot });
+  res.setHeader("Content-Type", "image/png");
+  res.send(screenshot);
 });
 
 app.listen(process.env.PORT || 3000, () => {
